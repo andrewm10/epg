@@ -1,6 +1,6 @@
 const Config = {
-    repository: 'celetor/epg',
-    branch: '51zmt'
+    repository: 'andrewm10/epg',
+    branch: 'erw.cc'
 }
 
 const init = {
