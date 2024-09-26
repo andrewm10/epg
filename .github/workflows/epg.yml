@@ -2,8 +2,8 @@ name: EPG
 
 on:
   schedule:
-    - cron: 0 4,10,16,22 * * *
-    - cron: 36 15,16 * * *
+    - cron: 0 4,10,22 * * *
+    - cron: 39 15,16 * * *
   workflow_dispatch:
 
 jobs:
@@ -15,10 +15,13 @@ jobs:
         include:
           - url: https://epg.112114.xyz/pp.xml.gz
             branch: 112114
+            sleep: 0s
+          - url: https://gitee.com/Black_crow/xmlgz/raw/master/e.xml.gz
+            branch: erw
+            sleep: 30s
           - url: http://epg.51zmt.top:8000/e.xml
             branch: 51zmt
-          - url: https://gitee.com/Black_crow/xmlgz/raw/master/e.xml.gz
-            branch: erw.cc
+            sleep: 60s
 
     steps:
       - name: download files
@@ -69,6 +72,7 @@ jobs:
           mv -f ./xml/e.xml ./xml/${{ matrix.branch }}.xml
           mv -f ./json/e.json ./json/${{ matrix.branch }}.json
           echo "${{ env.isDiff }}" > ./md5.txt
+          sleep ${{ matrix.sleep }}
 
       - uses: ncipollo/release-action@v1
         if: ${{ env.isDiff }}
