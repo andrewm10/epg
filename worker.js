@@ -1,5 +1,5 @@
 const Config = {
-    repository: 'celetor/epg',
+    repository: 'andrewm10/epg',
     branch: '51zmt'
 }
 
